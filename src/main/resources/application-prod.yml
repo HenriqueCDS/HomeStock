@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    show-sql: false
+
+logging:
+  level:
+    com.stockflow: WARN
+    root: WARN
+  file:
+    name: /var/log/stockflow/application.log
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
