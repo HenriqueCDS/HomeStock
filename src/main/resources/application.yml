@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: stockflow
+
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/stockflow}
+    username: ${DB_USERNAME:stockflow}
+    password: ${DB_PASSWORD:stockflow}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        default_batch_fetch_size: 20
+        jdbc:
+          batch_size: 20
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:change-this-to-a-very-long-random-secret-key-at-least-256-bits}
+    access-token-expiration-ms: ${JWT_ACCESS_EXP_MS:900000}      # 15 minutes
+    refresh-token-expiration-ms: ${JWT_REFRESH_EXP_MS:604800000} # 7 days
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    display-request-duration: true
+    groups-order: ASC
+    operations-sorter: alpha
+    tags-sorter: alpha
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: Stockflow
+    version: "@project.version@"
+    description: SaaS NFC-e stock automation backend
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{correlationId}] [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    root: INFO
+    com.stockflow: INFO

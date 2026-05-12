@@ -1,0 +1,66 @@
+package com.stockflow.domain.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+@Entity
+@Table(name = "products",
+    indexes = {
+        @Index(name = "idx_products_tenant_id", columnList = "tenant_id"),
+        @Index(name = "idx_products_ean", columnList = "ean"),
+        @Index(name = "idx_products_tenant_ean", columnList = "tenant_id, ean")
+    }
+)
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Product extends BaseEntity {
+
+    @Column(name = "tenant_id", nullable = false)
+    private UUID tenantId;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(length = 14)
+    private String ean;
+
+    @Column(length = 100)
+    private String category;
+
+    @Column(length = 20)
+    private String unit;
+
+    @Column(name = "current_stock", nullable = false, precision = 15, scale = 4)
+    @Builder.Default
+    private BigDecimal currentStock = BigDecimal.ZERO;
+
+    @Column(name = "average_cost", nullable = false, precision = 15, scale = 4)
+    @Builder.Default
+    private BigDecimal averageCost = BigDecimal.ZERO;
+
+    @Column(name = "minimum_stock", precision = 15, scale = 4)
+    @Builder.Default
+    private BigDecimal minimumStock = BigDecimal.ZERO;
+
+    @Column(name = "is_active", nullable = false)
+    @Builder.Default
+    private boolean active = true;
+
+    public void updateAverageCost(BigDecimal entryQuantity, BigDecimal entryUnitCost) {
+        BigDecimal totalCurrentValue = this.currentStock.multiply(this.averageCost);
+        BigDecimal totalEntryValue = entryQuantity.multiply(entryUnitCost);
+        BigDecimal newTotalStock = this.currentStock.add(entryQuantity);
+
+        if (newTotalStock.compareTo(BigDecimal.ZERO) > 0) {
+            this.averageCost = totalCurrentValue.add(totalEntryValue)
+                .divide(newTotalStock, 4, java.math.RoundingMode.HALF_UP);
+        }
+        this.currentStock = newTotalStock;
+    }
+}
