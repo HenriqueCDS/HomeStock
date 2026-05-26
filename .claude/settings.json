@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(mvn --version 2>&1)",
+      "PowerShell(java --version 2>&1)",
+      "PowerShell(Get-ChildItem \"C:\\\\\", \"C:\\\\Users\\\\henrique.cordeiro\\\\AppData\\\\Local\", \"C:\\\\tools\" -ErrorAction SilentlyContinue | Where-Object { $_.Name -match \"jdk|java|jre\" } | Format-Table FullName)",
+      "Read(//c//**)",
+      "Bash(Get-ChildItem \"C:\\\\Program Files\\\\Java\" -ErrorAction SilentlyContinue)",
+      "Bash(Get-ChildItem \"C:\\\\Program Files\\\\Eclipse Adoptium\" -ErrorAction SilentlyContinue)",
+      "Bash(Get-ChildItem \"C:\\\\Program Files\\\\Microsoft\" -Filter \"*jdk*\" -ErrorAction SilentlyContinue)",
+      "Bash(Get-ChildItem \"C:\\\\Program Files\\\\Eclipse Foundation\" -ErrorAction SilentlyContinue)",
+      "PowerShell($env:JAVA_HOME)",
+      "PowerShell([System.Environment]::SetEnvironmentVariable\\(\"PATH\", $env:PATH + \";C:\\\\maven\\\\bin\", [System.EnvironmentVariableTarget]::Machine\\))",
+      "Bash(mvn compile *)",
+      "PowerShell($env:JAVA_HOME; \\(Get-Command java -ErrorAction SilentlyContinue\\).Source; \\(Get-Command mvn -ErrorAction SilentlyContinue\\).Source)",
+      "PowerShell(& \"C:\\\\Users\\\\henrique.cordeiro\\\\.m2\\\\wrapper\\\\dists\\\\apache-maven-3.9.11-bin\\\\6mqf5t809d9geo83kj4ttckcbc\\\\apache-maven-3.9.11\\\\bin\\\\mvn.cmd\" -f \"c:\\\\Users\\\\henrique.cordeiro\\\\Desktop\\\\PPP\\\\HomeStock\\\\pom.xml\" compile -e 2>&1)"
+    ]
+  }
+}

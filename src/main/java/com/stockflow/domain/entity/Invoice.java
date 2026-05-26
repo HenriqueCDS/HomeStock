@@ -2,7 +2,11 @@ package com.stockflow.domain.entity;
 
 import com.stockflow.domain.enums.InvoiceStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,20 +25,19 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@SuperBuilder
 public class Invoice extends BaseEntity {
 
     @Column(name = "tenant_id", nullable = false)
     private UUID tenantId;
 
-    @Column(name = "invoice_key", length = 44)
+    @Column(name = "invoice_key", columnDefinition = "CHAR(44)")
     private String invoiceKey;
 
     @Column(name = "supplier_name")
     private String supplierName;
 
-    @Column(name = "supplier_cnpj", length = 14)
+    @Column(name = "supplier_cnpj", columnDefinition = "CHAR(14)")
     private String supplierCnpj;
 
     @Column(name = "purchase_date")
@@ -47,7 +50,7 @@ public class Invoice extends BaseEntity {
     private String qrCodeUrl;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     @Builder.Default
     private InvoiceStatus status = InvoiceStatus.PENDING;
 

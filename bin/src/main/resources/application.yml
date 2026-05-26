@@ -29,8 +29,6 @@ spring:
         default_batch_fetch_size: 20
         jdbc:
           batch_size: 20
-        type:
-          preferred_uuid_jdbc_type: CHAR
 
   flyway:
     enabled: true

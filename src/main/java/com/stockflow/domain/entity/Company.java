@@ -1,7 +1,11 @@
 package com.stockflow.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
@@ -15,14 +19,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@SuperBuilder
 public class Company extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true, length = 14)
+    @Column(nullable = false, unique = true, columnDefinition = "CHAR(14)")
     private String cnpj;
 
     @Column(name = "tenant_id", nullable = false, unique = true)

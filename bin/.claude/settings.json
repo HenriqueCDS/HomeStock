@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(mvn --version 2>&1)",
+      "PowerShell(java --version 2>&1)",
+      "PowerShell(Get-ChildItem \"C:\\\\\", \"C:\\\\Users\\\\henrique.cordeiro\\\\AppData\\\\Local\", \"C:\\\\tools\" -ErrorAction SilentlyContinue | Where-Object { $_.Name -match \"jdk|java|jre\" } | Format-Table FullName)",
+      "Read(//c//**)"
+    ]
+  }
+}

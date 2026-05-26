@@ -2,7 +2,11 @@ package com.stockflow.domain.entity;
 
 import com.stockflow.domain.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
@@ -16,8 +20,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@SuperBuilder
 public class User extends BaseEntity {
 
     @Column(nullable = false)
@@ -30,7 +33,7 @@ public class User extends BaseEntity {
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, columnDefinition = "VARCHAR(30)")
     @Builder.Default
     private UserRole role = UserRole.USER;
 

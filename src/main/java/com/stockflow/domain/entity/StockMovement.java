@@ -2,7 +2,10 @@ package com.stockflow.domain.entity;
 
 import com.stockflow.domain.enums.MovementType;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -18,8 +21,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@SuperBuilder
 public class StockMovement extends BaseEntity {
 
     @Column(name = "tenant_id", nullable = false)
@@ -30,7 +32,7 @@ public class StockMovement extends BaseEntity {
     private Product product;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private MovementType type;
 
     @Column(nullable = false, precision = 15, scale = 4)

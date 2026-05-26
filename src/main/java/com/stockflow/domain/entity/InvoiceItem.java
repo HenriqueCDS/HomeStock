@@ -1,7 +1,10 @@
 package com.stockflow.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
@@ -15,8 +18,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@SuperBuilder
 public class InvoiceItem extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
