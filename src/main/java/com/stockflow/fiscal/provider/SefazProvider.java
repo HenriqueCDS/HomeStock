@@ -5,6 +5,7 @@ import com.stockflow.fiscal.dto.NfceDTO;
 import com.stockflow.fiscal.parser.NfceHtmlParser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -14,6 +15,7 @@ import java.time.Duration;
 @Slf4j
 @Component
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "features.fiscal.enabled", havingValue = "true")
 public class SefazProvider implements FiscalProvider {
 
     private final WebClient webClient;

@@ -4,6 +4,7 @@ import com.stockflow.exception.FiscalException;
 import com.stockflow.fiscal.dto.NfceDTO;
 import com.stockflow.fiscal.provider.FiscalProvider;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.regex.Pattern;
 
 @Slf4j
 @Service
+@ConditionalOnProperty(name = "features.fiscal.enabled", havingValue = "true")
 public class FiscalService {
 
     private static final Pattern URL_PATTERN = Pattern.compile("https?://[^\\s\"'<>]+");

@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/nfce")
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "features.fiscal.enabled", havingValue = "true")
 @Tag(name = "NFC-e", description = "NFC-e processing and invoice confirmation")
 @SecurityRequirement(name = "bearerAuth")
 public class NfceController {

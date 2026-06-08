@@ -14,6 +14,7 @@ import com.stockflow.repository.InvoiceRepository;
 import com.stockflow.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,7 @@ import java.util.UUID;
 @Slf4j
 @Component
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "features.fiscal.enabled", havingValue = "true")
 public class ProcessNfceUseCase {
 
     private final FiscalService fiscalService;

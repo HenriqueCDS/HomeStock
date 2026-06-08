@@ -2,6 +2,9 @@ spring:
   application:
     name: stockflow
 
+  main:
+    web-application-type: servlet
+
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
 
@@ -77,3 +80,7 @@ logging:
   level:
     root: INFO
     com.stockflow: INFO
+
+features:
+  fiscal:
+    enabled: false
