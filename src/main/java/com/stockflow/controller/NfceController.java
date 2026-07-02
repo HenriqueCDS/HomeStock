@@ -3,6 +3,7 @@ package com.stockflow.controller;
 import com.stockflow.domain.dto.common.ApiResponseDTO;
 import com.stockflow.domain.dto.invoice.InvoiceResponseDTO;
 import com.stockflow.security.JwtTokenProvider;
+import com.stockflow.service.InvoiceService;
 import com.stockflow.usecase.ConfirmInvoiceUseCase;
 import com.stockflow.usecase.ProcessNfceUseCase;
 import com.stockflow.utils.SecurityUtils;
@@ -29,6 +30,7 @@ public class NfceController {
 
     private final ProcessNfceUseCase processNfceUseCase;
     private final ConfirmInvoiceUseCase confirmInvoiceUseCase;
+    private final InvoiceService invoiceService;
     private final JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/process")
@@ -63,7 +65,7 @@ public class NfceController {
         @PathVariable UUID invoiceId,
         HttpServletRequest request) {
         var tenantId = SecurityUtils.getCurrentTenantId(jwtTokenProvider, request);
-        // Delegated to InvoiceController but accessible here for convenience
+        invoiceService.reject(tenantId, invoiceId);
         return ResponseEntity.ok(ApiResponseDTO.ok("Invoice rejected", null));
     }
 }

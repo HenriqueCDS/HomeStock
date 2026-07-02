@@ -25,6 +25,6 @@ public interface InvoiceRepository extends JpaRepository<Invoice, UUID> {
     @Query("SELECT COUNT(i) FROM Invoice i WHERE i.tenantId = :tenantId AND i.deletedAt IS NULL")
     long countByTenantId(UUID tenantId);
 
-    @Query("SELECT COUNT(i) FROM Invoice i WHERE i.tenantId = :tenantId AND i.status = 'PENDING' AND i.deletedAt IS NULL")
+    @Query("SELECT COUNT(i) FROM Invoice i WHERE i.tenantId = :tenantId AND i.status IN ('PENDING', 'FETCHED') AND i.deletedAt IS NULL")
     long countPendingByTenantId(UUID tenantId);
 }

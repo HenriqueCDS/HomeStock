@@ -32,7 +32,7 @@ public class StockMovement extends BaseEntity {
     private Product product;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
+    @Column(nullable = false, length = 20)
     private MovementType type;
 
     @Column(nullable = false, precision = 15, scale = 4)

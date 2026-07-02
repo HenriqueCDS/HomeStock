@@ -19,7 +19,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@Disabled("Integration test uses PostgreSQLContainer but app requires MySQL driver and MySQL-specific Flyway migrations")
+@Disabled("Requires Docker running (Testcontainers spins up postgres:16-alpine). Remove this annotation to run locally with Docker.")
 @SpringBootTest
 @AutoConfigureMockMvc
 @Testcontainers

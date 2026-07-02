@@ -33,14 +33,14 @@ public class User extends BaseEntity {
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "VARCHAR(30)")
+    @Column(nullable = false, length = 30)
     @Builder.Default
     private UserRole role = UserRole.USER;
 
     @Column(name = "tenant_id", nullable = false)
     private UUID tenantId;
 
-    @Column(name = "refresh_token")
+    @Column(name = "refresh_token", columnDefinition = "TEXT")
     private String refreshToken;
 
     @Column(name = "is_active", nullable = false)

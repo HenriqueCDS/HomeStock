@@ -31,13 +31,13 @@ public class Invoice extends BaseEntity {
     @Column(name = "tenant_id", nullable = false)
     private UUID tenantId;
 
-    @Column(name = "invoice_key", columnDefinition = "CHAR(44)")
+    @Column(name = "invoice_key", length = 44)
     private String invoiceKey;
 
     @Column(name = "supplier_name")
     private String supplierName;
 
-    @Column(name = "supplier_cnpj", columnDefinition = "CHAR(14)")
+    @Column(name = "supplier_cnpj", length = 14)
     private String supplierCnpj;
 
     @Column(name = "purchase_date")
@@ -50,7 +50,7 @@ public class Invoice extends BaseEntity {
     private String qrCodeUrl;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
+    @Column(nullable = false, length = 20)
     @Builder.Default
     private InvoiceStatus status = InvoiceStatus.PENDING;
 

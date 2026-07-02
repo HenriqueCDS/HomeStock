@@ -25,7 +25,7 @@ public class Company extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true, columnDefinition = "CHAR(14)")
+    @Column(nullable = false, unique = true, length = 14)
     private String cnpj;
 
     @Column(name = "tenant_id", nullable = false, unique = true)
