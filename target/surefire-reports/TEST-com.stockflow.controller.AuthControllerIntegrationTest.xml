@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.stockflow.controller.AuthControllerIntegrationTest" time="0.036" tests="2" errors="0" skipped="2" failures="0">
+  <properties/>
+  <testcase name="login_shouldReturn400WhenEmailBlank" classname="com.stockflow.controller.AuthControllerIntegrationTest" time="0.0">
+    <skipped message="Requires Docker running (Testcontainers spins up postgres:16-alpine). Remove this annotation to run locally with Docker."/>
+  </testcase>
+  <testcase name="register_shouldReturn201WithTokens" classname="com.stockflow.controller.AuthControllerIntegrationTest" time="0.0">
+    <skipped message="Requires Docker running (Testcontainers spins up postgres:16-alpine). Remove this annotation to run locally with Docker."/>
+  </testcase>
+</testsuite>
